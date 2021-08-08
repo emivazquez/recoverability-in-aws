@@ -1,5 +1,15 @@
 The estimates for the RTO and RPO for the cases of a single AZ outage and a single region outage are the following:
 Minimum RTO for a single AZ outage is 2 min since the RDS databases in the Multi-AZ configuration, the change from the primary to the standby is automatic.
-Minimum RTO for a single region outage is 5 min aproximately because the read replica is not promoted automatically to primary so you can do it with an automatic job or manually.
+00:00 - Primary DB AZ fails (0 min)
+00:02 - Standby DB in a different AZ is automatically set as the primary DB and service resumes (2 min)
+
+Minimum RTO for a single region outage is 6 min aproximately because the read replica is not promoted automatically to primary so you have to do it manually.
+00:00 - Primary DB region fails (0 min)
+00:01 - Alert of the primary DB region outage triggers support staff(1 min)
+00:02 - 24/7 support staff logs to the console (1 min)
+00:03 - The promotion of the read replica to main starts (1 min)
+00:06 - Promotion finishes and services is up again (3 min)
+
 Minimum RPO for a single AZ outage is 0 because the primary and standby databases in Multi-AZ configuration replica synchronously, which means that the data that is in the primary is also in the standby.
+
 Minimum RPO fot a single region outage is 5 seconds because the replication between a primary database and its replicas is asynchronously and therefore there is some latency between one data being uploaded to the primary database and the replica.
