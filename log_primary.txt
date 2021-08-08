@@ -1,0 +1,26 @@
+[ec2-user@ip-10-0-11-179 ~]$ mysql -h primary.cjr6evvbf6b0.us-east-1.rds.amazonaws.com -u admin -p udacity
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [udacity]> create table test(    test_id INT NOT NULL AUTO_INCREMENT,    message VARCHAR(100) NOT NULL,    PRIMARY KEY ( test_id ) );
+Query OK, 0 rows affected (0.04 sec)
+
+MySQL [udacity]> insert into test (message) VALUES ("this is a test");
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> select * from test;
++---------+----------------+
+| test_id | message        |
++---------+----------------+
+|       1 | this is a test |
++---------+----------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> exit
+Bye
+[ec2-user@ip-10-0-11-179 ~]$
